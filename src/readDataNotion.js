@@ -7,25 +7,34 @@ const notion = new Client({
 (async () => {
   const res = await notion.databases.query({
     database_id: "59ace68d481741e3bb96c9574be6c6b4",
-    filter: {
-      property: "Date",
-      date: {
-        equals: "2024-03-21",
-      },
-    },
   });
 
-  console.log(res);
-  res.results.forEach((element) => {
-    page_id = res.results[0].id;
-  });
+  // console.log(res);
+  const pageData = [];
+  for (const element of res.results) {
+    page_id = element.id;
 
-  console.log(page_id);
-
-  (async () => {
     const response = await notion.pages.retrieve({ page_id: page_id });
-    question = response.properties.Question;
+    question = response.properties.Question.title[0].plain_text;
+    nextReview = response.properties.NextReview.formula.date.start;
 
-    console.log(question.title[0].plain_text);
-  })();
+    pageData.push({ question, nextReview });
+
+    // console.log(question.title[0].plain_text);
+    // console.log(nextReview.formula.date.start);
+  }
+
+  console.log(pageData);
+  const jsonData = JSON.stringify(pageData);
+
+  console.log(jsonData);
+
+  // (async () => {
+  //   const response = await notion.pages.retrieve({ page_id: page_id });
+  //   question = response.properties.Question;
+  //   nextReview = response.properties.NextReview;
+
+  //   console.log(question.title[0].plain_text);
+  //   console.log(nextReview.formula.date.start);
+  // })();
 })();
