@@ -36,7 +36,7 @@ const getTodayPageTitle = async () => {
   }
 };
 
-async function addNotionPageToDatabase(title, date) {
+async function AddNotionPageToDatabase(title, date) {
   const pageProperties = {
     title: {
       title: [
@@ -62,6 +62,16 @@ async function addNotionPageToDatabase(title, date) {
   });
   console.log(newPage);
 }
+
+// async function addNotionPageToDatabase(databaseId, pageProperties) {
+//   const newPage = await notion.pages.create({
+//     parent: {
+//       database_id: databaseId,
+//     },
+//     properties: pageProperties,
+//   })
+//   console.log(newPage)
+// }
 
 const fetchPageData = async () => {
   try {
