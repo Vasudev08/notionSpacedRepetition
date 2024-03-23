@@ -1,5 +1,6 @@
 import { AddNotionPageToDatabase } from './dataAccess';
 import { useState } from 'react';
+import React from 'react';
 
 const AddCard = () => {
     const [title, setTitle] = useState('');

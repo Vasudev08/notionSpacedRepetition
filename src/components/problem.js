@@ -20,9 +20,9 @@ const Problem = () => {
     sumbit_problem("hard");
   }
 
-  const sumbit_again_problem = () => {
-    sumbit_problem("again");
-  }
+  // const sumbit_again_problem = () => {
+  //   sumbit_problem("again");
+  // }
 
   const getProblem = () => {
     setHaveProblem(true);
@@ -58,33 +58,33 @@ const Problem = () => {
         const data = await response.json();
         setTodayProblem(data["title"]);
 
-        console.log("Problem:",data);
+        console.log("Problem:", data);
       } catch (error) {
         console.error("Error fetching page title:", error);
       }
     }
     fetchPageTitle();
-    
+
   }, []);
 
-    
+
 
   if (haveProblem) {
 
 
-  return <div class="problem-container">
+    return <div class="problem-container">
 
-    <div class="problem-title">
-      {/* Async import for getTodayPageTitle */}
-      {/* eslint-disable-next-line react/jsx-no-bind */}
-      {/*import("./dataAccess").then(({ getTodayPageTitle }) => (
+      <div class="problem-title">
+        {/* Async import for getTodayPageTitle */}
+        {/* eslint-disable-next-line react/jsx-no-bind */}
+        {/*import("./dataAccess").then(({ getTodayPageTitle }) => (
         <h1>Daily Problem: {getTodayPageTitle().then(title => title)}</h1>
       ))*/}
 
-      <h1>Daily Problem: {todayProblem}</h1>
-    
+        <h1>Daily Problem: {todayProblem}</h1>
 
-      <div class="problem-descr">
+
+        <div class="problem-descr">
 
           {/* <p>Problem Description</p> there are no even stored descriptions*/}
         </div>
