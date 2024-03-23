@@ -34,3 +34,5 @@ const getTodayPageTitle = async () => {
     throw error;
   }
 };
+
+module.exports = { getTodayPageTitle };
