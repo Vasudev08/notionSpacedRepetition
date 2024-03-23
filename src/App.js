@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { getTodayPageTitle } from "./dataAccess";
 
 function App() {
   const [pageTitle, setPageTitle] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchPageTitle = async () => {
       try {
-        const title = await getTodayPageTitle();
-        console.log(title);
-        setPageTitle(title);
+        const response = await fetch("http://localhost:3001/getTodayPageTitle");
+        if (!response.ok) {
+          throw new Error("Failed to fetch page title");
+        }
+        const data = await response.json();
+        setPageTitle(data.title);
       } catch (error) {
         console.error("Error fetching page title:", error);
-        setPageTitle("Error: Failed to fetch page title");
       }
     };
 
-    fetchData();
+    fetchPageTitle();
   }, []);
 
-  return <div>{pageTitle} hello</div>;
+  return <div>{pageTitle}</div>;
 }
 
 export default App;
