@@ -1,6 +1,10 @@
 const express = require("express");
 const cors = require("cors");
-const { getTodayPageTitle, fetchPageData } = require("./components/dataAccess");
+const {
+  getTodayPageTitle,
+  fetchPageData,
+  fetchPageDataUrl,
+} = require("./components/dataAccess");
 
 const app = express();
 const port = 3001;
@@ -19,6 +23,17 @@ app.get("/getTodayPageTitle", async (req, res) => {
 app.get("/pageData", async (req, res) => {
   try {
     const pageData = await fetchPageData();
+    res.json(pageData);
+  } catch (error) {
+    console.error("Error while fetching page data:", error);
+
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.get("/pageDataUrl", async (req, res) => {
+  try {
+    const pageData = await fetchPageDataUrl();
     res.json(pageData);
   } catch (error) {
     console.error("Error while fetching page data:", error);
