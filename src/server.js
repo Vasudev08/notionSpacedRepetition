@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { getTodayPageTitle, fetchPageData } = require("./dataAccess");
+const { getTodayPageTitle, fetchPageData } = require("./components/dataAccess");
 
 const app = express();
 const port = 3001;

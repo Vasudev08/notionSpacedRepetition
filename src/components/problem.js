@@ -41,15 +41,14 @@ const sumbit_problem = (difficulty) => {
   if(haveProblem){
 
 
-  return <div class="problem-container"
-  >
+  return <div class="problem-container">
 
     <div class="problem-title">
       {/* Async import for getTodayPageTitle */}
       {/* eslint-disable-next-line react/jsx-no-bind */}
-      {import("./dataAccess").then(({ getTodayPageTitle }) => (
+      {/*import("./dataAccess").then(({ getTodayPageTitle }) => (
         <h1>Daily Problem: {getTodayPageTitle().then(title => title)}</h1>
-      ))}
+      ))*/}
       <div class="problem-descr">
 
         {/* <p>Problem Description</p> there are no even stored descriptions*/}
