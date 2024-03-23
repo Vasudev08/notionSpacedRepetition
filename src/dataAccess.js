@@ -11,7 +11,8 @@ const getTodayPageTitle = async () => {
       filter: {
         property: "Date",
         date: {
-          equals: "2024-03-21",
+          // equals: "2024-03-21",
+          equals: new Date().toISOString().split('T')[0],
         },
       },
     });
@@ -19,7 +20,7 @@ const getTodayPageTitle = async () => {
     let page_id;
     res.results.forEach((element) => {
       page_id = element.id;
-    });
+    }); //TODO: page_id is overwritten by the last matching page
 
     if (!page_id) {
       throw new Error("Page not found");
