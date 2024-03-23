@@ -11,8 +11,8 @@ const getTodayPageTitle = async () => {
       filter: {
         property: "Date",
         date: {
-          // equals: "2024-03-21",
-          equals: new Date().toISOString().split("T")[0],
+          equals: "2024-03-21",
+          // equals: new Date().toISOString().split("T")[0],
         },
       },
     });
