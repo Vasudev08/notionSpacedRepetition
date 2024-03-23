@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ScheduleComponent, Agenda, Inject, ViewsDirective, ViewDirective } from '@syncfusion/ej2-react-schedule';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Internationalization } from '@syncfusion/ej2-base';
 const Problem = () => {
@@ -46,6 +46,29 @@ const Problem = () => {
     setHaveProblem(false);
   }
 
+  const [todayProblem, setTodayProblem] = useState("");
+
+  useEffect(() => {
+    const fetchPageTitle = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/getTodayPageTitle");
+        if (!response.ok) {
+          throw new Error("Failed to fetch page title");
+        }
+        const data = await response.json();
+        setTodayProblem(data["title"]);
+
+        console.log("Problem:",data);
+      } catch (error) {
+        console.error("Error fetching page title:", error);
+      }
+    }
+    fetchPageTitle();
+    
+  }, []);
+
+    
+
   if (haveProblem) {
 
 
@@ -57,6 +80,10 @@ const Problem = () => {
       {/*import("./dataAccess").then(({ getTodayPageTitle }) => (
         <h1>Daily Problem: {getTodayPageTitle().then(title => title)}</h1>
       ))*/}
+
+      <h1>Daily Problem: {todayProblem}</h1>
+    
+
       <div class="problem-descr">
 
           {/* <p>Problem Description</p> there are no even stored descriptions*/}

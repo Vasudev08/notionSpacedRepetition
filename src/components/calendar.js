@@ -22,9 +22,6 @@ const Calendar = (props) => {
 
     });
 
-    console.log(new Date(nextDate));
-
-    console.log(problems[ind]);
   }
   const eventSettings = {
     dataSource: problems
