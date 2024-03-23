@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getTodayPageTitle } from "./dataAccess";
+import Calendar from "./components/calendar";
 
 function App() {
   const [pageTitle, setPageTitle] = useState("");
@@ -19,7 +20,10 @@ function App() {
     fetchData();
   }, []);
 
-  return <div>{pageTitle} hello</div>;
+  return (
+    <Calendar/>
+  );
+
 }
 
 export default App;
