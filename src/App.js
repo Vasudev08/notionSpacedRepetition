@@ -23,6 +23,7 @@ function App() {
 
   return (<div>
     <Problem/>
+    <addCard />
     <Calendar/>
     </div>
   );
