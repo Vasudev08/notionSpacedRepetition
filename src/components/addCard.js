@@ -1,4 +1,5 @@
-import { addNotionPageToDatabase } from './dataAccess';
+import { AddNotionPageToDatabase } from './dataAccess';
+import { useState } from 'react';
 
 const AddCard = () => {
     const [title, setTitle] = useState('');
@@ -23,14 +24,16 @@ const AddCard = () => {
                 setErrorMessage('Invalid date');
                 return;
             }
-
-            await addNotionPageToDatabase(title, date);
+            
+            console.log(title, parsedDate);
+            await AddNotionPageToDatabase(title, date);
 
             setTitle('');
             setDate('');
             setErrorMessage('');
 
         } catch (error) {
+            console.error('Error adding card:', error);
             setErrorMessage('Error adding card');
         }
     };
@@ -51,8 +54,7 @@ const AddCard = () => {
     );
 };
 
-
-export function modCard(name, difficulty) {
+export function ModCard(name, difficulty) {
     if (typeof name !== 'string' || typeof difficulty !== 'number' || difficulty < 1 || difficulty > 4) {
         throw new Error('Invalid arguments');
     }

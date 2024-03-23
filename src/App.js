@@ -5,6 +5,7 @@ import { ScheduleComponent, Agenda, Inject, ViewsDirective, ViewDirective } from
 
 import { Internationalization } from '@syncfusion/ej2-base';
 import Problem from "./components/problem";
+import AddCard from "./components/addCard";
 
 function App() {
   const [pageTitle, setPageTitle] = useState("");
@@ -31,9 +32,9 @@ function App() {
 
   return (
     <div>
-      <Problem data={PageData}/>
-      <addCard data={PageData}/>
-      <Calendar data={PageData}/>
+      <Problem data={PageData} />
+      <AddCard data={PageData} />
+      <Calendar data={PageData} />
     </div>
   );
 }
