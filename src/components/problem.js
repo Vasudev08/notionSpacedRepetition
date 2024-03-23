@@ -7,10 +7,14 @@ const Problem = () => {
   >
 
     <div class="problem-title">
-      <h1>Daily Problem: 2SUM</h1>
+      {/* Async import for getTodayPageTitle */}
+      {/* eslint-disable-next-line react/jsx-no-bind */}
+      {import("./dataAccess").then(({ getTodayPageTitle }) => (
+        <h1>Daily Problem: {getTodayPageTitle().then(title => title)}</h1>
+      ))}
       <div class="problem-descr">
 
-        <p>Problem Description</p>
+        {/* <p>Problem Description</p> there are no even stored descriptions*/}
       </div>
     </div>
     <div class="problem-buttons">
