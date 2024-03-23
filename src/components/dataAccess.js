@@ -64,3 +64,30 @@ async function addNotionPageToDatabase(title, date) {
 }
 
 module.exports = { getTodayPageTitle };
+
+const fetchPageData = async () => {
+  try {
+    const res = await notion.databases.query({
+      database_id: "59ace68d481741e3bb96c9574be6c6b4",
+    });
+
+    const pageData = [];
+    for (const element of res.results) {
+      const page_id = element.id;
+
+      const response = await notion.pages.retrieve({ page_id });
+      const question = response.properties.Question.title[0].plain_text;
+      const nextReview = response.properties.NextReview.formula.date.start;
+
+      pageData.push({ question, nextReview });
+    }
+    console.log(pageData);
+
+    return pageData;
+  } catch (error) {
+    console.error("Error fetching page data:", error);
+    throw error;
+  }
+};
+
+module.exports = { fetchPageData };
