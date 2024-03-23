@@ -11,8 +11,8 @@ const getTodayPageTitle = async () => {
       filter: {
         property: "Date",
         date: {
-          // equals: "2024-03-21",
-          equals: new Date().toISOString().split("T")[0],
+          equals: "2024-03-21",
+          // equals: new Date().toISOString().split("T")[0],
         },
       },
     });
@@ -63,8 +63,6 @@ async function addNotionPageToDatabase(title, date) {
   console.log(newPage);
 }
 
-module.exports = { getTodayPageTitle };
-
 const fetchPageData = async () => {
   try {
     const res = await notion.databases.query({
@@ -90,4 +88,4 @@ const fetchPageData = async () => {
   }
 };
 
-module.exports = { fetchPageData };
+module.exports = { fetchPageData, getTodayPageTitle, addNotionPageToDatabase };
