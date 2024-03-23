@@ -1,10 +1,11 @@
+import { addNotionPageToDatabase } from './dataAccess';
+
 const AddCard = () => {
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
-    const [link, setLink] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (!title) {
@@ -13,26 +14,25 @@ const AddCard = () => {
         }
 
         try {
-            const parsedDate = new Date(date);
+            const dateParts = date.split('-'); // len = 2 or 3
+            const year = dateParts.length === 2 ? new Date().getFullYear() : Number(dateParts[0]);
+            const month = Number(dateParts[dateParts.length - 2]) - 1;
+            const day = Number(dateParts[dateParts.length - 1]);
+            const parsedDate = new Date(year, month, day);
             if (isNaN(parsedDate.getTime())) {
                 setErrorMessage('Invalid date');
                 return;
             }
+
+            await addNotionPageToDatabase(title, date);
+
+            setTitle('');
+            setDate('');
+            setErrorMessage('');
+
         } catch (error) {
-            setErrorMessage('Invalid date');
-            return;
+            setErrorMessage('Error adding card');
         }
-
-        if (!link) {
-            setErrorMessage('Link is required');
-            return;
-        }
-
-        // TODO: add card to data source
-        setTitle('');
-        setDate('');
-        setLink('');
-        setErrorMessage('');
     };
 
     return (
@@ -45,15 +45,24 @@ const AddCard = () => {
                 Date:
                 <input type="text" value={date} onChange={(event) => setDate(event.target.value)} />
             </label>
-            <label>
-                Link:
-                <input type="text" value={link} onChange={(event) => setLink(event.target.value)} />
-            </label>
             {errorMessage && <div>{errorMessage}</div>}
             <button type="submit">Add Card</button>
         </form>
     );
 };
 
-export default AddCard;
 
+export function modCard(name, difficulty) {
+    if (typeof name !== 'string' || typeof difficulty !== 'number' || difficulty < 1 || difficulty > 4) {
+        throw new Error('Invalid arguments');
+    }
+
+    // 1 = again, 2 = hard, 3 = good, 4 = easy
+    return {
+        name,
+        difficulty,
+    };
+}
+
+
+export default AddCard;

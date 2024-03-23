@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getTodayPageTitle } from "./dataAccess";
+import { getTodayPageTitle } from "./components/dataAccess";
 import Calendar from "./components/calendar";
 import Problem from "./components/problem";
 
