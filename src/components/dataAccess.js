@@ -127,6 +127,6 @@ const fetchPageDataUrl = async () => {
 module.exports = {
   fetchPageData,
   getTodayPageTitle,
-  addNotionPageToDatabase,
+
   fetchPageDataUrl,
 };
