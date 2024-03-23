@@ -29,7 +29,7 @@ const AddCard = () => {
             setTitle('');
             setDate('');
             setErrorMessage('');
-            
+
         } catch (error) {
             setErrorMessage('Error adding card');
         }
@@ -50,5 +50,19 @@ const AddCard = () => {
         </form>
     );
 };
+
+
+export function modCard(name, difficulty) {
+    if (typeof name !== 'string' || typeof difficulty !== 'number' || difficulty < 1 || difficulty > 4) {
+        throw new Error('Invalid arguments');
+    }
+
+    // 1 = again, 2 = hard, 3 = good, 4 = easy
+    return {
+        name,
+        difficulty,
+    };
+}
+
 
 export default AddCard;
