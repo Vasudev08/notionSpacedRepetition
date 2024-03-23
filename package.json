@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@notionhq/client": "^2.2.14",
+    "@syncfusion/ej2-base": "^25.1.35",
+    "@syncfusion/ej2-react-schedule": "^25.1.35",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
