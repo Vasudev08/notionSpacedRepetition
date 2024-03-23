@@ -5,9 +5,9 @@ import { Internationalization } from '@syncfusion/ej2-base';
 const Calendar = () => {
   const eventSettings = { dataSource: [{
     Id: 1,
-    Subject: 'Meeting',
-    StartTime: new Date(2018, 1, 15, 10, 0),
-    EndTime: new Date(2018, 1, 15, 12, 30),
+    Subject: 'testStuff',
+    StartTime: new Date(2024, 1, 15, 10, 0),
+    EndTime: new Date(2024, 1, 15, 12, 30),
     IsAllDay: true
 
   }] };

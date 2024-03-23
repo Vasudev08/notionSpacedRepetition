@@ -36,4 +36,31 @@ const getTodayPageTitle = async () => {
   }
 };
 
+async function addNotionPageToDatabase(title, date) {
+  const pageProperties = {
+    "title": {
+      "title": [
+        {
+          text: {
+            content: title,
+          },
+        },
+      ],
+    },
+    "Date": {
+      "date": {
+        start: date,
+        end: date,
+      },
+    },
+  };
+  const newPage = await notion.pages.create({
+    parent: {
+      database_id: "59ace68d481741e3bb96c9574be6c6b4",
+    },
+    properties: pageProperties,
+  })
+  console.log(newPage)
+}
+
 module.exports = { getTodayPageTitle };
