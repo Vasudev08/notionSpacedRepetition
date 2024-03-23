@@ -1,3 +1,4 @@
+import React from 'react';
 import { AddNotionPageToDatabase } from './dataAccess';
 import { useState } from 'react';
 
@@ -26,8 +27,16 @@ const AddCard = () => {
             }
             
             console.log(title, parsedDate);
-            await AddNotionPageToDatabase(title, date);
 
+    
+            fetch("http://localhost:3001/updatePageData", {
+  method: "POST",
+  body: JSON.stringify({ title: title, date: parsedDate.toISOString().split("T")[0] }),
+  
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+})
             setTitle('');
             setDate('');
             setErrorMessage('');

@@ -1,11 +1,16 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const cors = require("cors");
-const { getTodayPageTitle, fetchPageData } = require("./components/dataAccess");
+const { getTodayPageTitle, fetchPageData, AddNotionPageToDatabase } = require("./components/dataAccess");
 
 const app = express();
 const port = 3001;
 
+
+
+const jsonParser = bodyParser.json();
 app.use(cors());
+app.use(express.json())
 
 app.get("/getTodayPageTitle", async (req, res) => {
   try {
@@ -19,6 +24,22 @@ app.get("/getTodayPageTitle", async (req, res) => {
 app.get("/pageData", async (req, res) => {
   try {
     const pageData = await fetchPageData();
+    res.json(pageData);
+  } catch (error) {
+    console.error("Error while fetching page data:", error);
+
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/updatePageData", async (req, res) => {
+  try {
+    
+
+    console.log(req.body);
+
+
+    const pageData = await AddNotionPageToDatabase(req.body["title"], req.body["date"]);
     res.json(pageData);
   } catch (error) {
     console.error("Error while fetching page data:", error);

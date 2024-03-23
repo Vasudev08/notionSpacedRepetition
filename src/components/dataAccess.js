@@ -37,6 +37,7 @@ const getTodayPageTitle = async () => {
 };
 
 async function AddNotionPageToDatabase(title, date) {
+  console.log(title, date);
   const pageProperties = {
     title: {
       title: [
@@ -47,10 +48,9 @@ async function AddNotionPageToDatabase(title, date) {
         },
       ],
     },
-    Date: {
+    ReviewDate: {
       date: {
-        start: date,
-        end: date,
+        start: date
       },
     },
   };
@@ -90,7 +90,6 @@ const fetchPageData = async () => {
 
       pageData.push({ question, nextReview });
     }
-    console.log(pageData);
 
     return pageData;
   } catch (error) {

@@ -102,10 +102,7 @@ const Problem = () => {
   else {
     return (<div class="problem-container">
       <div>
-        <h1 class="problem-title">Congratulations! Try another problem:</h1>
-      </div>
-      <div class="problem-buttons">
-        <button type="button" onClick={getProblem} class="btn btn-success m-2">Yes</button>
+        <h1 class="problem-title">Congratulations for solving {todayProblem}!</h1>
       </div>
     </div>);
   }

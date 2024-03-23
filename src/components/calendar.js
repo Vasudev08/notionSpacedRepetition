@@ -37,7 +37,7 @@ const Calendar = (props) => {
     </div>);
   }
   return (<div class="calendar-container">
-    <h1>Calendar</h1>
+    <h1>Upcoming Problems:</h1>
     <div class="calendar">
       <ScheduleComponent width='100%' height='550px' agendaDaysCount={7} selectedDate={new Date()} eventSettings={eventSettings}>
         <ViewsDirective>
