@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { getTodayPageTitle } from "./components/dataAccess";
 import Calendar from "./components/calendar";
-import { ScheduleComponent, Agenda, Inject, ViewsDirective, ViewDirective } from '@syncfusion/ej2-react-schedule';
+import {
+  ScheduleComponent,
+  Agenda,
+  Inject,
+  ViewsDirective,
+  ViewDirective,
+} from "@syncfusion/ej2-react-schedule";
 
-import { Internationalization } from '@syncfusion/ej2-base';
+import { Internationalization } from "@syncfusion/ej2-base";
 import Problem from "./components/problem";
 import AddCard from "./components/addCard";
 
@@ -15,7 +21,7 @@ function App() {
   useEffect(() => {
     const fetchPageTitle = async () => {
       try {
-        const response = await fetch("http://localhost:3001/pageData");
+        const response = await fetch("http://localhost:3001/pageDataUrl");
         if (!response.ok) {
           throw new Error("Failed to fetch page title");
         }
